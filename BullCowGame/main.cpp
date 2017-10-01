@@ -53,7 +53,7 @@ void PlayGame() {
 		FBullCowCount BullCowCount=BCGame.SubmitValidGuesss(Guess);
 		
 		std::cout << "Bulls =  " << BullCowCount.Bulls;
-		std::cout << ".Cows =  " << BullCowCount.Cows << "\n\n";
+		std::cout << ". Cows =  " << BullCowCount.Cows << "\n\n";
 	}
 	PrintGameSummary();
 	return;
