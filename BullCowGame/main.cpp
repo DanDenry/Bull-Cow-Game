@@ -34,6 +34,14 @@ int main() {
 //introduce the game
 void PrintIntro() {
 	std::cout << "\nWelcome to Bulls and Cows, a fun word game.\n";
+	std::cout << "                  }   {                         \n";
+	std::cout << "                  ~~~~      ~~~                 \n";
+	std::cout << "      ___________( + +)    (- -)__________      \n";
+	std::cout << "     (           |\\  /      \\ /|          )\\ \n";
+	std::cout << "    /L___________) *         *( __________| \\  \n";
+	std::cout << "   / |           |             |          |  *  \n";
+	std::cout << "  *  |           |             |          |     \n";
+	std::cout << " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLenght();
 	std::cout << " letter isogram I'm thinking of?\n";
 	std::cout << std::endl;
