@@ -1,6 +1,7 @@
+#pragma once
 #include "FBullCowGame.h"
 #include <map>
-#define TMap std::map
+#define TMap std::map // to make syntax Unreal friendly
 
 FBullCowGame::FBullCowGame() {
 	reset();
@@ -13,8 +14,8 @@ bool FBullCowGame::IsGameWon() const {
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const {
 	if (!IsIsogram(Guess)) {
 		return EGuessStatus::Not_Isogram;
-	} else if (!IsLowercase(Guess)) { // if the guess isn't all lowercase 
-		return EGuessStatus::Not_Lowercase; //TODO write a function
+	} else if (!IsLowercase(Guess)) { 
+		return EGuessStatus::Not_Lowercase; 
 	} else if (Guess.length() != GetHiddenWordLenght()) {
 		return EGuessStatus::Wrong_Lenght;
 	} else {
@@ -24,7 +25,8 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const {
 }
 
 int32 FBullCowGame::GetMaxTries() const {
-	return MyMaxTries;
+	TMap<int32, int32> WordLengthToMaxTries{ {3,4}, {4,7}, {5,16}, {6,16} };
+	return WordLengthToMaxTries[MyHiddenWord.length()];
 }
 
 int32 FBullCowGame::GetCurrentTry() const {
@@ -77,18 +79,19 @@ FBullCowCount FBullCowGame::SubmitValidGuesss(FString Guess) {
 	return BullCowCount;
 }
 
+
 void FBullCowGame::reset() {
-	constexpr int32 MAX_TRIES = 4;
-	MyMaxTries = MAX_TRIES;
-	const FString HIDDEN_WORD = "dwarfs";
+	const FString HIDDEN_WORD = "dwarfs"; // This must be an isogram
 	MyHiddenWord = HIDDEN_WORD;
+
 	MyCurrentTry = 1;
 	bGameIsWon = false;
+
 	return;
 }
 
 bool FBullCowGame::IsIsogram(FString Word) const {
-	if (Word.length() <= 1) { return true; } //treat 0 and 1 letter word as isogram
+	if (Word.length() <= 1) { return true; } 
 	TMap <char, bool> LetterSeen; //setup our map
 	for (auto Letter : Word) { //for all letter of the word
 		Letter = tolower(Letter); //handle mixed case
@@ -104,7 +107,7 @@ bool FBullCowGame::IsIsogram(FString Word) const {
 
 bool FBullCowGame::IsLowercase(FString Word) const {
 	for (auto Letter : Word) { 
-		if (!islower(Letter)) { // if not a lowercase letter
+		if (!islower(Letter)) { 
 			return false;
 		}
 	}
